@@ -328,17 +328,20 @@
                 drag: function (event, ui) {
 
                     var rotateCSS = 'rotate(' + '-' + ui.position.left + 'deg)';
+                    var opacityCSS = `${1-ui.position.left/180}`;
+                    var zindexCss = `${ui.position.left}`
                     if (ui.position.left < 180) {
                         $(this).css({
                             left: 2,
                             'transform': rotateCSS,
-                            'z-index':11
+                            'z-index':zindexCss
                         })
 
                         $("#sliderBox p").css({
-                            'opacity':.5
+                            'opacity':opacityCSS
                             
                         })
+
                     }
 
                 },
