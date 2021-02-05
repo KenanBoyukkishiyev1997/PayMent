@@ -289,8 +289,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://kit.fontawesome.com/2d810d4f39.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js" integrity="sha512-0bEtK0USNd96MnO4XhH8jhv3nyRF0eK87pJke6pkYf3cM0uDIhNJy9ltuzqgypoIFXw3JSuiy04tVk4AjpZdZw==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js" ></script>
     <script src="./payment.js"></script>
+
     <script>
         jQuery(function ($) {
             $('[data-numeric]').payment('restrictNumeric');
@@ -331,6 +332,12 @@
                         $(this).css({
                             left: 2,
                             'transform': rotateCSS,
+                            'z-index':11
+                        })
+
+                        $("#sliderBox p").css({
+                            'opacity':.5
+                            
                         })
                     }
 
@@ -343,6 +350,8 @@
                             'height': 52
 
                         });
+
+                       
 
                         $("#sliderBox .slider").css({
                             'display': 'none',
@@ -363,6 +372,12 @@
                         $(this).css({
                             'left': 2,
                             'transform': rotateCSS,
+                            'z-index':0
+                        })
+
+                        $("#sliderBox p").css({
+                            'opacity':1
+                            
                         })
                     }
 
