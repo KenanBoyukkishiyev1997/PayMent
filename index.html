@@ -156,7 +156,7 @@
 
     <style>
         #sliderBox {
-            width:calc(100% - 30px);
+            width:90%;
             height: 65px;
             background: #00d8ff;
             margin: 30px auto 0;
@@ -171,7 +171,7 @@
 
         @media screen and (max-width:650px) {
             #sliderBox {
-                margin: 100% auto 0;
+                margin: 60% auto 0;
 
             }
         }
@@ -185,7 +185,7 @@
             top: 0px !important;
             bottom: 0px;
             margin: auto;
-            left: 2px;
+            left: 10px;
         }
 
         #sliderBox p {
@@ -230,7 +230,7 @@
             }
 
             100% {
-                left: 0px;
+                right: 0px;
             }
         }
 
@@ -280,7 +280,7 @@
         </div>
 
         <div id="sliderBox">
-            <div class='slider' onclick="bounce()">
+            <div class='slider' style="    margin: 0px 0.5rem;" onclick="bounce()">
                 <i id="slider" class="fas fa-chevron-right"></i>
             </div>
             <p>Slide to unlock</p>
@@ -335,18 +335,23 @@
     </script>
 
     <script>
-        $(function () {
+        function resize() {
+
+            
+           var sliderWidth= $(window).width()*0.9-40;
+            var degree=180/sliderWidth;
             $("#slider").draggable({
                 axis: 'x',
                 containment: 'parent',
                 drag: function (event, ui) {
 
-                    var rotateCSS =  `rotate(-${ui.position.left}deg)`;
-                    var opacityCSS = `${1 - ui.position.left / 180}`;
+                    var rotateCSS =  `rotate(-${ui.position.left*degree}deg)`;
+                    var opacityCSS = `${1 - ui.position.left / sliderWidth}`;
+                    console.log(ui.position);
                     var zindexCss = `${ui.position.left}`
-                    if (ui.position.left <= 180) {
+                    if (ui.position.left*degree <= 180) {
                         $(this).css({
-                            'left': 2,
+                            'left': 10,
                             'transform': rotateCSS,
                             'z-index': zindexCss
                         })
@@ -361,14 +366,12 @@
                 },
                 stop: function (event, ui) {
                     console.log(ui.position.left)
-                    if (ui.position.left > 170) {
+                    if (ui.position.left*degree > 170) {
                         $("#sliderBox").css({
                             'width': 52,
                             'height': 52
 
                         });
-
-
 
                         $("#sliderBox .slider").css({
                             'display': 'none',
@@ -379,6 +382,7 @@
                             'display': 'none',
 
                         });
+
                         $(".sub").css({
                             'display': 'block',
 
@@ -387,9 +391,9 @@
                     } else {
                         var rotateCSS = 'rotate(0deg)';
                         $(this).css({
-                            'left': 2,
+                            'left': 10,
                             'transform': rotateCSS,
-                            'z-index': 1
+                            'z-index': 1,
                         })
 
                         $("#sliderBox p").css({
@@ -400,10 +404,12 @@
 
                 }
             });
-        });
+        }
 
 
 
+        $(window).on("resize", resize);
+        resize();
         element = document.getElementById("slider");
 
         element.addEventListener("click", function (e) {
